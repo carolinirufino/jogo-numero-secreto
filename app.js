@@ -11,7 +11,7 @@ function exibirTextoNaTela(tag, texto) {
     if ('speechSynthesis' in window) {
         let utterance = new SpeechSynthesisUtterance(texto);
         utterance.lang = 'pt-BR';  // Define o idioma como português
-        utterance.rate = 1.0;  // Define a velocidade da narração
+        utterance.rate = 1.2;  // Define a velocidade da narração
         window.speechSynthesis.speak(utterance);  // Realiza a narração
     } else {
         console.log("Web Speech API não suportada neste navegador.");
@@ -22,9 +22,6 @@ function exibirMensagemInicial() {
     // Exibir as mensagens na tela
     exibirTextoNaTela('h1', 'Jogo do número secreto');
     exibirTextoNaTela('p', 'Escolha um número entre 1 e 10');
-
-    // Agora narrar a mensagem inicial
-    narrarBoasVindas();
 }
 
 function narrarBoasVindas() {
@@ -39,7 +36,10 @@ function narrarBoasVindas() {
     }
 }
 
-exibirMensagemInicial();
+document.getElementById('startButton').addEventListener('click', () => {
+    narrarBoasVindas();  // Chama a narração após o clique
+    exibirMensagemInicial();  // Exibe a mensagem inicial
+});
 
 function verificarChute() {
     let chute = document.querySelector('input').value;
@@ -89,6 +89,5 @@ function reiniciarJogo() {
     exibirMensagemInicial();
     document.getElementById('reiniciar').setAttribute('disabled', true);
 }
-
 
 
