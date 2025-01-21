@@ -19,8 +19,24 @@ function exibirTextoNaTela(tag, texto) {
 }
 
 function exibirMensagemInicial() {
+    // Exibir as mensagens na tela
     exibirTextoNaTela('h1', 'Jogo do número secreto');
     exibirTextoNaTela('p', 'Escolha um número entre 1 e 10');
+
+    // Agora narrar a mensagem inicial
+    narrarBoasVindas();
+}
+
+function narrarBoasVindas() {
+    // Narração específica para a mensagem de boas-vindas
+    if ('speechSynthesis' in window) {
+        let utterance = new SpeechSynthesisUtterance('Bem-vindo ao jogo do número secreto!');
+        utterance.lang = 'pt-BR';
+        utterance.rate = 1.2;
+        window.speechSynthesis.speak(utterance);
+    } else {
+        console.log("Web Speech API não suportada neste navegador.");
+    }
 }
 
 exibirMensagemInicial();
@@ -73,7 +89,6 @@ function reiniciarJogo() {
     exibirMensagemInicial();
     document.getElementById('reiniciar').setAttribute('disabled', true);
 }
-
 
 
 
