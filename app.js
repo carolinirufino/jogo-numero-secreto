@@ -6,40 +6,15 @@ let tentativas = 1;
 function exibirTextoNaTela(tag, texto) {
     let campo = document.querySelector(tag);
     campo.innerHTML = texto;
-    
-    // Verificar se a Web Speech API está disponível
-    if ('speechSynthesis' in window) {
-        let utterance = new SpeechSynthesisUtterance(texto);
-        utterance.lang = 'pt-BR';  // Define o idioma como português
-        utterance.rate = 1.2;  // Define a velocidade da narração
-        window.speechSynthesis.speak(utterance);  // Realiza a narração
-    } else {
-        console.log("Web Speech API não suportada neste navegador.");
-    }
+    responsiveVoice.speak(texto, 'Brazilian Portuguese Female', {rate:1.2});
 }
 
 function exibirMensagemInicial() {
-    // Exibir as mensagens na tela
     exibirTextoNaTela('h1', 'Jogo do número secreto');
     exibirTextoNaTela('p', 'Escolha um número entre 1 e 10');
 }
 
-function narrarBoasVindas() {
-    // Narração específica para a mensagem de boas-vindas
-    if ('speechSynthesis' in window) {
-        let utterance = new SpeechSynthesisUtterance('Bem-vindo ao jogo do número secreto!');
-        utterance.lang = 'pt-BR';
-        utterance.rate = 1.2;
-        window.speechSynthesis.speak(utterance);
-    } else {
-        console.log("Web Speech API não suportada neste navegador.");
-    }
-}
-
-document.getElementById('startButton').addEventListener('click', () => {
-    narrarBoasVindas();  // Chama a narração após o clique
-    exibirMensagemInicial();  // Exibe a mensagem inicial
-});
+exibirMensagemInicial();
 
 function verificarChute() {
     let chute = document.querySelector('input').value;
@@ -72,7 +47,7 @@ function gerarNumeroAleatorio() {
         return gerarNumeroAleatorio();
     } else {
         listaDeNumerosSorteados.push(numeroEscolhido);
-        console.log(listaDeNumerosSorteados);
+        console.log(listaDeNumerosSorteados)
         return numeroEscolhido;
     }
 }
@@ -87,8 +62,5 @@ function reiniciarJogo() {
     limparCampo();
     tentativas = 1;
     exibirMensagemInicial();
-    document.getElementById('reiniciar').setAttribute('disabled', true);
+    document.getElementById('reiniciar').setAttribute('disabled', true)
 }
-
-
-
