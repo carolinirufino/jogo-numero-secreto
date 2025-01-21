@@ -6,11 +6,13 @@ let tentativas = 1;
 function exibirTextoNaTela(tag, texto) {
     let campo = document.querySelector(tag);
     campo.innerHTML = texto;
-     if ('speechSynthesis' in window) {
+    
+    // Verificar se a Web Speech API está disponível
+    if ('speechSynthesis' in window) {
         let utterance = new SpeechSynthesisUtterance(texto);
-        utterance.lang = 'pt-BR'; 
-        utterance.rate = 1.2; 
-        window.speechSynthesis.speak(utterance); 
+        utterance.lang = 'pt-BR';  // Define o idioma como português
+        utterance.rate = 1.2;  // Define a velocidade da narração
+        window.speechSynthesis.speak(utterance);  // Realiza a narração
     } else {
         console.log("Web Speech API não suportada neste navegador.");
     }
@@ -54,7 +56,7 @@ function gerarNumeroAleatorio() {
         return gerarNumeroAleatorio();
     } else {
         listaDeNumerosSorteados.push(numeroEscolhido);
-        console.log(listaDeNumerosSorteados)
+        console.log(listaDeNumerosSorteados);
         return numeroEscolhido;
     }
 }
@@ -69,11 +71,8 @@ function reiniciarJogo() {
     limparCampo();
     tentativas = 1;
     exibirMensagemInicial();
-    document.getElementById('reiniciar').setAttribute('disabled', true)
+    document.getElementById('reiniciar').setAttribute('disabled', true);
 }
-
-
-
 
 
 
