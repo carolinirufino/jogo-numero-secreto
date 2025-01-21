@@ -11,7 +11,7 @@ function exibirTextoNaTela(tag, texto) {
     if ('speechSynthesis' in window) {
         let utterance = new SpeechSynthesisUtterance(texto);
         utterance.lang = 'pt-BR';  // Define o idioma como português
-        utterance.rate = 1.2;  // Define a velocidade da narração
+        utterance.rate = 1.0;  // Define a velocidade da narração
         window.speechSynthesis.speak(utterance);  // Realiza a narração
     } else {
         console.log("Web Speech API não suportada neste navegador.");
